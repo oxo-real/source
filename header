@@ -24,6 +24,11 @@
 # guidelines
 
 
-# variable initialization
-# replies
-# colors
+# initial definitions
+
+## variable initialization
+script_name="script_name"
+
+## reply functions
+
+## colors

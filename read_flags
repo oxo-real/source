@@ -1,0 +1,40 @@
+
+
+# read_flags
+
+while getopts ":a:bh" opt; do
+
+	case $opt in
+		a)
+			## compulsory / optioonal flag
+			## -a <value_to_pass (semicolon in getopts)>
+			<var>=${OPTARG}
+                	<optional: script to execute>
+			<exit 0>
+			;;
+		b)
+			## compulsory / optional flag
+			## -b <NO_value_to_pass (no semicolon in getopts)>
+                	<script to execute>
+			<exit 0>
+			;;
+		h)
+			## -h display help text
+			printf "$script_name: usage: netconn [-a <value_to_pass>] [-b]\n"
+			exit 0
+			;;
+		\?)
+			printf "$script_name: ${RED}invalid option: -${OPTARG}${NOC}"
+			exit 1
+			;;
+		:)
+			## display help
+			printf "$script_name: ${RED}option -${OPTARG} requires an argument${NOC}"
+			exit 1
+			;;
+	esac
+
+done
+
+
+#read_flags #doesn't work in function block
