@@ -1,0 +1,34 @@
+
+
+# define reply functions
+
+reply_plain() {
+
+	# entry must be confirmed explicitly (by pushing enter)
+	read reply
+
+}
+
+
+reply_single() {
+
+        # first entered character goes directly to $reply
+        stty_0=$(stty -g)
+	stty raw #-echo
+        reply=$(head -c 1)
+        stty $stty_0
+
+}
+
+
+reply_single_hidden() {
+
+        # first entered character goes silently to $reply
+	stty_0=$(stty -g)
+	stty raw -echo
+        reply=$(head -c 1)
+	stty $stty_0
+
+}
+
+

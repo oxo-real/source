@@ -1,0 +1,16 @@
+
+
+# define text appearance
+
+## text color
+RED='\033[0;31m' # red
+GREEN='\033[0;32m' # green
+NOC='\033[0m' # no color
+
+## text style
+UL=`tput smul`
+NUL=`tput rmul`
+BOLD=`tput bold`
+NORMAL=`tput sgr0`
+
+
