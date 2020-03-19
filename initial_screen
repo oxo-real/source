@@ -1,18 +1,14 @@
-
+#!/bin/bash
 
 initial_screen() {
 
 	clear
-	printf "$script_name (c) 2019 - 2020 cytopyge\n"
+	printf "$script_name\n"
+	printf "(c) $initial_release_year - $(date "+%Y") cytopyge\n"
 	echo
-	printf "Please report any experienced malfunctioning or suggestions for improvement.\n"
-	printf "This software is subject to continuous development.\n"
-	printf "By entering your password below you will consent to the following:\n"
 	printf "This software is provided as is without warranty of any kind.\n"
-	printf "Continuing execution of this software is at your own risk.\n"
+	printf "Running this software is totally at your own risk.\n"
 	echo
 	echo
 
 }
-
-

@@ -1,12 +1,15 @@
-
+#!/bin/bash
 
 get_sudo() {
 
+	set -e
 	sudo -k
+	printf "In order to obtain the necessary privileges,\nplease enter "
 	sudo echo
-	t0=`date +%Y%m%d_%H%M%S`
+	set +e
 	clear
 	echo
+	#t0=`date +%Y%m%d_%H%M%S`
 
 }
 
