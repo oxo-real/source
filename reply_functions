@@ -14,6 +14,21 @@ reply_plain() {
 }
 
 
+reply_plain_hidden() {
+
+	# string entry must be confirmed explicitly (by pushing enter)
+        read -s reply
+
+}
+
+
+reply_single_hidden_timed() {
+
+	read -s -n 1 -t 5 reply
+
+}
+
+
 reply_single() {
 
         # first entered character goes directly to $reply
@@ -27,7 +42,7 @@ reply_single() {
 
 reply_single_hidden() {
 
-        # first entered character goes silently to $reply
+        # string entry must be confirmed
 	stty_0=$(stty -g)
 	stty raw -echo
         reply=$(head -c 1)
@@ -35,9 +50,3 @@ reply_single_hidden() {
 
 }
 
-
-reply_timed() {
-
-	read -s -n 1 -t 5 reply
-
-}

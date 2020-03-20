@@ -4,13 +4,12 @@ get_sudo() {
 
 	set -e
 	sudo -k
-	printf "In order to obtain the necessary privileges,\nplease enter "
+	printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
 	sudo echo
+	printf "${NOC}"
 	set +e
-	clear
-	echo
+	#clear
+	#echo
 	#t0=`date +%Y%m%d_%H%M%S`
 
 }
-
-

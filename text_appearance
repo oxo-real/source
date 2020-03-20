@@ -5,6 +5,7 @@
 ## text color
 RED='\033[0;31m' # red
 GREEN='\033[0;32m' # green
+YELLOW='\033[0;33m' # yellow
 NOC='\033[0m' # no color
 
 ## text style
