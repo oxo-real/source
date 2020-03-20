@@ -1,0 +1,18 @@
+#!/bin/bash
+
+splash_screen() {
+
+	figlet_banner=$(figlet "$script_name" && figlet -f mini "$developer")
+	current_year=$(date "+%Y")
+	clear
+	[ -x "$(command -v figlet)" ] && printf "$figlet_banner\n\n"
+	printf "$script_name\n"
+	printf "(c) $initial_release_year"
+	[[ $initial_release_year -ne $current_year ]] && printf " - $current_year"
+	printf " cytopyge\n"
+	echo
+	printf "This software is provided as is without warranty of any kind.\n"
+	printf "Running this software is totally at your own risk.\n"
+	echo
+
+}
