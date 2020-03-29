@@ -1,3 +1,5 @@
+#read_flags doesn't seem to work in a function block
+#pass variable script_name before read flags
 
 
 # read_flags
@@ -20,7 +22,7 @@ while getopts ":a:bh" opt; do
 			;;
 		h)
 			## -h display help text
-			printf "$script_name: usage: netconn [-a <value_to_pass>] [-b]\n"
+			printf "$script_name: usage: $script_name [-a <value_to_pass>] [-b]\n"
 			exit 0
 			;;
 		\?)
@@ -35,6 +37,3 @@ while getopts ":a:bh" opt; do
 	esac
 
 done
-
-
-#read_flags #doesn't work in function block
