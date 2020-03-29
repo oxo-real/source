@@ -29,20 +29,17 @@
 ## initialize hardcoded variables
 script_name="script_name"
 initial_release_year="2020"
-source_dir="$HOME/_git/code/snippets/"
+developer="cytopyge"
+source_dir="$HOME/_git/code/sources/functions"
 
 # sourcing
 for file in $source_dir; do
 	source $file
 done
 
-## get sources
-get_sudo
-read_flags
-reply_functions
-splash_screen
-text_appearance
-
-## reply functions
-
-## colors
+## get functions
+#get_sudo
+#read_flags
+#reply_functions
+#splash_screen
+#text_appearance
