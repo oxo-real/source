@@ -1,4 +1,10 @@
 #!/bin/bash
+#
+##
+### source function
+##
+#
+
 
 get_sudo() {
 
@@ -8,8 +14,5 @@ get_sudo() {
 	sudo echo
 	printf "${NOC}"
 	set +e
-	#clear
-	#echo
-	#t0=`date +%Y%m%d_%H%M%S`
 
 }
