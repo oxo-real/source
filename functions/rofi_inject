@@ -1,0 +1,86 @@
+#!/bin/sh
+##
+###
+#### main framework for rofi calls
+
+### rofi_inject -l <list> -p <prompt>
+
+
+#read_flags doesn't seem to work in a function block
+#pass variable script_name before read flags
+script_name="rofi_inject"
+
+
+# read_flags
+
+while getopts ":l:p:h" opt; do
+
+	case $opt in
+		l)
+			## compulsory / optional flag
+			## -l <value_to_pass (semicolon in getopts)>
+			## rofi_list
+			list=${OPTARG}
+			;;
+		p)
+			## compulsory / optional flag
+			## -b <NO_value_to_pass (no semicolon in getopts)>
+			## rofi_prompt
+                	prompt=${OPTARG}
+			;;
+		h)
+			## -h display help text
+			printf "$script_name: usage: $script_name [-a <value_to_pass>] [-b]\n"
+			exit 0
+			;;
+		\?)
+			printf "$script_name: ${RED}invalid option: -${OPTARG}${NOC}"
+			exit 1
+			;;
+		:)
+			## display help
+			printf "$script_name: ${RED}option -${OPTARG} requires an argument${NOC}"
+			exit 1
+			;;
+	esac
+
+done
+
+rofi_main=$(cat $list | \
+	rofi \
+	-dmenu \
+	-monitor 0 \
+	-location 1 \
+	-width 100 \
+	-lines 5 \
+	-columns 3 \
+	-separator-style none \
+	-hide-scrollbar \
+	-font "Source Code Pro 10" \
+	-bw 0 \
+	-i \
+	-cycle true \
+	-matching normal \
+	-disable-history \
+	-fake-transparency \
+	-fake-background \
+	-color-normal "#000000, #999999, #000000, #005577, #ffffff" \
+	-color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
+	-color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
+	-color-window "#000000, #999999, #b1b4b3" \
+	-kb-row-select "Tab" \
+	-kb-row-tab "" \
+	-p "$prompt" \
+	)
+
+	# no comments inside settings
+	# state: 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
+	# 'background', 'border', 'separator'
+
+
+# what to do
+## ...if rofi_main is zero lenght
+[ -z $rofi_main ] && exit
+
+## ...with selection
+echo -n $rofi_main | wl-copy

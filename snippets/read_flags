@@ -1,5 +1,6 @@
 #read_flags doesn't seem to work in a function block
 #pass variable script_name before read flags
+script_name=""
 
 
 # read_flags
@@ -8,7 +9,7 @@ while getopts ":a:bh" opt; do
 
 	case $opt in
 		a)
-			## compulsory / optioonal flag
+			## compulsory / optional flag
 			## -a <value_to_pass (semicolon in getopts)>
 			<var>=${OPTARG}
                 	<optional: script to execute>
