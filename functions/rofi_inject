@@ -1,9 +1,13 @@
 #!/bin/sh
 ##
+### main framework for rofi calls from other scripts
 ###
-#### main framework for rofi calls from other scripts
+### depends on $list & $prompt
+### results in $rofi_sel (when a selection is made)
+##
+#
 
-rofi_main=$(printf "$list" | \
+rofi_sel=$(printf "$list" | \
 	rofi \
 	-dmenu \
 	-monitor 0 \
@@ -34,10 +38,4 @@ rofi_main=$(printf "$list" | \
 	# state: 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
 	# 'background', 'border', 'separator'
 
-
-# what to do
-## ...if rofi_main is zero lenght
-[ -z "$rofi_main" ] && exit 220
-
-## ...with selection
-selection="$rofi_main"
+[ -z "$rofi_sel" ] && exit 220
