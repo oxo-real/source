@@ -1,52 +1,9 @@
 #!/bin/sh
 ##
 ###
-#### main framework for rofi calls
+#### main framework for rofi calls from other scripts
 
-### rofi_inject -l <list> -p <prompt>
-
-
-#read_flags doesn't seem to work in a function block
-#pass variable script_name before read flags
-script_name="rofi_inject"
-
-
-# read_flags
-
-while getopts ":l:p:h" opt; do
-
-	case $opt in
-		l)
-			## compulsory / optional flag
-			## -l <value_to_pass (semicolon in getopts)>
-			## rofi_list
-			list=${OPTARG}
-			;;
-		p)
-			## compulsory / optional flag
-			## -b <NO_value_to_pass (no semicolon in getopts)>
-			## rofi_prompt
-                	prompt=${OPTARG}
-			;;
-		h)
-			## -h display help text
-			printf "$script_name: usage: $script_name [-a <value_to_pass>] [-b]\n"
-			exit 0
-			;;
-		\?)
-			printf "$script_name: ${RED}invalid option: -${OPTARG}${NOC}"
-			exit 1
-			;;
-		:)
-			## display help
-			printf "$script_name: ${RED}option -${OPTARG} requires an argument${NOC}"
-			exit 1
-			;;
-	esac
-
-done
-
-rofi_main=$(cat $list | \
+rofi_main=$(printf "$list" | \
 	rofi \
 	-dmenu \
 	-monitor 0 \
@@ -80,7 +37,7 @@ rofi_main=$(cat $list | \
 
 # what to do
 ## ...if rofi_main is zero lenght
-[ -z $rofi_main ] && exit
+[ -z "$rofi_main" ] && exit 220
 
 ## ...with selection
-echo -n $rofi_main | wl-copy
+selection="$rofi_main"
