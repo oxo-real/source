@@ -1,0 +1,92 @@
+#!/bin/bash
+
+
+source $HOME/_git/code/sources/functions/reply_functions
+
+
+question_yN_sure_Yn() {
+
+	printf "question (y/N) "
+	echo
+	reply_single
+
+	if printf "$reply" | grep -iq "^y"; then
+
+		printf "your answer: Yy\n"
+		printf "sure? (Y/n) "
+		reply_single
+		echo
+
+		if printf "$reply" | grep -iq "^n"; then
+
+			printf "your answer: Yy sure: Nn\n"
+			exit 12  ### REMOVE from production code ###
+		else
+			printf "your answer: Yy sure: Yy\n"
+			exit 11  ### REMOVE from production code ###
+		fi
+
+	else
+
+		printf "your answer: Nn\n"
+		printf "sure? (Y/n) "
+		reply_single
+		echo
+
+		if printf "$reply" | grep -iq "^n"; then
+
+			printf "your answer: Nn sure: Nn\n"
+			exit 22  ### REMOVE from production code ###
+		else
+			printf "your answer: Nn sure: Yy\n"
+			exit 21  ### REMOVE from production code ###
+		fi
+
+	fi
+	echo
+
+}
+
+
+question_Yn_sure_Yn() {
+
+	printf "question (Y/n) "
+	echo
+	reply_single
+
+	if printf "$reply" | grep -iq "^n"; then
+
+		printf "your answer: Nn\n"
+		printf "sure? (Y/n) "
+		reply_single
+		echo
+
+		if printf "$reply" | grep -iq "^n"; then
+
+			printf "your answer: Nn sure: Nn\n"
+			exit 12  ### REMOVE from production code ###
+		else
+			printf "your answer: Nn sure: Yy\n"
+			exit 11  ### REMOVE from production code ###
+		fi
+
+	else
+
+		printf "your answer: Yy\n"
+		printf "sure? (Y/n) "
+		reply_single
+		echo
+
+		if printf "$reply" | grep -iq "^n"; then
+
+			printf "your answer: Yy sure: Nn\n"
+			exit 22  ### REMOVE from production code ###
+		else
+			printf "your answer: Yy sure: Yy\n"
+			exit 21  ### REMOVE from production code ###
+		fi
+
+	fi
+	echo
+
+}
