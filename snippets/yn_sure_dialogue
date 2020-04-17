@@ -7,8 +7,8 @@ source $HOME/_git/code/sources/functions/reply_functions
 question_yN_sure_Yn() {
 
 	printf "question (y/N) "
-	echo
 	reply_single
+	echo
 
 	if printf "$reply" | grep -iq "^y"; then
 
