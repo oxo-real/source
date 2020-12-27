@@ -32,7 +32,32 @@ reply_single_hidden_timed() {
 	# entry is not visible
     # first entered character goes directly to $reply
 	# timer exits
+
+	: '
+	input_time=5
+	tput sc
+
+	while [ $input_time -ge 0 ]; do
+
+		tput rc
+		tput smul # set mode underline
+		printf "$input_time"
+		tput rmul # reset mode underline
+		printf " "
+
+		read -s -n 1 -t 1 reply
+
+		[[ -n $reply ]] && break
+		tput ed
+		input_time=$(( $input_time - 1 ))
+
+	done
+	# '
+
+
+	#: '
 	read -s -n 1 -t 5 reply
+	# '
 
 }
 
@@ -42,7 +67,7 @@ reply_single() {
     # first entered character goes directly to $reply
     stty_0=$(stty -g)
 	stty raw #-echo
-    read -r -k 1 reply
+    read -r reply
 	# posix compliant version instead of zsh read:
 	#reply=$(head -c 1)
     stty $stty_0
