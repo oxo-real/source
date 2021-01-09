@@ -67,9 +67,9 @@ reply_single() {
     # first entered character goes directly to $reply
     stty_0=$(stty -g)
 	stty raw #-echo
-    read -r reply
+    #read -r reply
 	# posix compliant version instead of zsh read:
-	#reply=$(head -c 1)
+	reply=$(head -c 1)
     stty $stty_0
 
 }
