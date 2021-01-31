@@ -8,7 +8,7 @@
 
 get_sudo() {
 
-	## get sudo error status
+	## get sudo error status non interactive
 	sudo -n printf "" > /dev/null 2>&1
 
 	if [[ $? -ne 0 ]]; then
@@ -20,6 +20,7 @@ get_sudo() {
 
 		## validate; update cached credentials, authenticating only if necessary
 		## is always necessary in this if statement
+		echo
 		printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
 
 		sudo -v
