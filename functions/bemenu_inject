@@ -1,0 +1,24 @@
+#!/bin/sh
+##
+### main framework for bemenu calls from other scripts
+###
+### depends on $list & $prompt
+### results in $bemenu_sel (when a selection is made)
+##
+#
+
+bemenu_sel=$(printf "$list" | \
+	bemenu \
+	--wrap \
+	--monitor=0 \
+	--list=5 \
+	--no-overlap \
+	--fn "Source Code Pro 10" \
+	--prompt="$prompt" \
+	)
+
+	# no comments inside settings
+	# state: 'bg', 'fg', 'bgalt', 'hlbg', 'hlfg'
+	# 'background', 'border', 'separator'
+
+[ -z "$bemenu_sel" ] && exit 220
