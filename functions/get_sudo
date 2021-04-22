@@ -29,8 +29,9 @@ get_sudo() {
 
 		set +e
 
-		echo
-
 	fi
+
+	#after get_sudo newline
+	echo
 
 }
