@@ -1,0 +1,8 @@
+#!/bin/bash
+
+max_bar_width=46
+prog_perc=$(awk "BEGIN {print ($round/$rounds*100)}" | cut -f 1 -d .)
+bar_width=$(awk "BEGIN {print ($round/$rounds*$max_bar_width)}" | cut -f 1 -d .)
+#[TEST] progressbar still not working, why?
+#printf "%0.s#" "{1..$bar_width}"
+printf "$prog_perc"
