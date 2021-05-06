@@ -1,8 +1,44 @@
 #!/bin/bash
+#
+##
+###                                              _
+###  _ __  _ __ ___   __ _ _ __ ___  ___ ___    | |__   __ _ _ __
+### | '_ \| '__/ _ \ / _` | '__/ _ \/ __/ __|   | '_ \ / _` | '__|
+### | |_) | | | (_) | (_| | | |  __/\__ \__ \   | |_) | (_| | |
+### | .__/|_|  \___/ \__, |_|  \___||___/___/___|_.__/ \__,_|_|
+### |_|              |___/                 |_____|
+###
+###  _ _|_ _ ._    _  _
+### (_\/|_(_)|_)\/(_|(/_
+###   /      |  /  _|
+###
+### progress_bar
+### (c) 2021 cytopyge
+###
+### This software is provided as is without warranty of any kind.
+###	Running this software is totally at your own risk.
+###
+### usage: bar <prog_perc> <bar_width>
+##
+#
 
-max_bar_width=46
-prog_perc=$(awk "BEGIN {print ($round/$rounds*100)}" | cut -f 1 -d .)
-bar_width=$(awk "BEGIN {print ($round/$rounds*$max_bar_width)}" | cut -f 1 -d .)
-#[TEST] progressbar still not working, why?
-#printf "%0.s#" "{1..$bar_width}"
-printf "$prog_perc"
+# input
+
+# bar_width	(characters)
+# prog_perc (whole percentage)
+
+
+bar() {
+
+	elapsed=$(($1*$2/100))
+
+    # bar definition with spaces
+	# printf -v assigns value to variable
+    printf -v prog  "%${elapsed}s"
+    printf -v total "%$(($2-elapsed))s"
+
+	# %4s	reserves 4 chars for percentage
+	# %s\r	print bar and carriage return
+    printf '%4s%s\r' "$prog_perc%" "[${prog// /#}${total}]"
+
+}
