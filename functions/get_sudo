@@ -2,11 +2,17 @@
 #
 ##
 ### source function
+###
+### 2019 -2021 (c) cytopyge
 ##
 #
 
 
-get_sudo() {
+get_sudo()
+{
+
+	## save screen content
+	tput smcup
 
 	## get sudo error status non interactive
 	sudo -n printf "" > /dev/null 2>&1
@@ -29,9 +35,23 @@ get_sudo() {
 
 		set +e
 
+
+		#tput clear
+		#tput rmcup
+		## remove lines above cursor
+		### restore cursor position
+		#tput rc
+		#tput cuu1
+		#tput ed
+		#tput cuu1
+		### clear to end of screen
+		#tput ed
+		#after get_sudo newline
+
 	fi
 
-	#after get_sudo newline
+	# restore screen content
+	tput rmcup
 	echo
 
 }
