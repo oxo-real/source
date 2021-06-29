@@ -39,6 +39,7 @@ bar() {
 
 	# %4s	reserves 4 chars for percentage
 	# %s\r	print bar and carriage return
-    printf '%4s%s\r' "$prog_perc%" "  [${prog// /#}${total}]"
+    printf '%4s%s\r' "[${prog// /#}${total}]  " "$prog_perc%"
+    #printf '%4s%s\r' "$prog_perc%" "  [${prog// /#}${total}]"
 
 }
