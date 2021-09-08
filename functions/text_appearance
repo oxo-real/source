@@ -5,14 +5,22 @@
 ##
 #
 
+# color testing
+# for i in {0..7}; do; printf "\033[0;3${i}mcolor\n"; done
 
 # text appearance definitions
 
 ## text color
-RED='\033[0;31m' # red
-GREEN='\033[0;32m' # green
-YELLOW='\033[0;33m' # yellow
-NOC='\033[0m' # no color
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+LBLUE='\033[0;36m'
+GREY='\033[0;37m'
+BROWN='\033[0;38m'
+TEST='\033[3;30m'
+NOC='\033[0m' # no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
 ## text style
