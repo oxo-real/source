@@ -5,6 +5,7 @@
 ##
 #
 
+# https://www.colorhexa.com/
 # color testing
 # for i in {0..7}; do; printf "\033[0;3${i}mcolor\n"; done
 
