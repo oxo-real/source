@@ -37,15 +37,16 @@ reply_single_hidden_timed() {
 	input_time=5
 	tput sc
 
-	while [ $input_time -ge 0 ]; do
+	while [ $input_time -gt 0 ]; do
 
 		tput rc
-		tput smul # set mode underline
+		tput rev	# set mode reverse video
 		printf "$input_time"
-		tput rmul # reset mode underline
+		tput sgr0	# turn off all attribures
 		printf " "
 
-		read -s -n 1 -t 1 reply
+		## use -t flag before -n flag to prevent '-t not an identifer' error
+		read -s -t 1 -n 1 reply
 
 		[[ -n $reply ]] && break
 		tput ed
@@ -56,7 +57,8 @@ reply_single_hidden_timed() {
 
 
 	#: '
-	read -s -n 1 -t 5 reply
+	read -s -t 5 -n 1 reply
+	#read -s -n 1 -t 5 reply
 	# '
 
 }
