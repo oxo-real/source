@@ -25,7 +25,9 @@ NOC='\033[0m' # no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
 ## text style
+### underline
 UL=`tput smul`
 NUL=`tput rmul`
+### bold
 BOLD=`tput bold`
 NORMAL=`tput sgr0`
