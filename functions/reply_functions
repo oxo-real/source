@@ -27,13 +27,15 @@ reply_plain_hidden() {
 }
 
 
-reply_single_hidden_timed() {
-
+reply_single_hidden_timer()
+{
 	# entry is not visible
     # first entered character goes directly to $reply
+	# timer visible
 	# timer exits
 
-	: '
+	# has given errors if host script is not #!/bin/sh
+
 	input_time=5
 	tput sc
 
@@ -53,14 +55,18 @@ reply_single_hidden_timed() {
 		input_time=$(( $input_time - 1 ))
 
 	done
-	# '
+}
 
 
-	#: '
+reply_single_hidden_timed()
+{
+	# entry is not visible
+    # first entered character goes directly to $reply
+	# timer not visible
+	# timer exits
+
+	## -t before -n prevents identifier error
 	read -s -t 5 -n 1 reply
-	#read -s -n 1 -t 5 reply
-	# '
-
 }
 
 
