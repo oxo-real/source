@@ -21,7 +21,7 @@ LBLUE='\033[0;36m'
 GREY='\033[0;37m'
 BROWN='\033[0;38m'
 TEST='\033[3;30m'
-NOC='\033[0m' # no color, default
+NOC='\033[0m'		# no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
 ## text style
