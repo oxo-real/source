@@ -12,7 +12,7 @@ get_sudo()
 {
 
 	## save screen content
-	tput smcup
+	## ##tput smcup
 
 	## get sudo error status non interactive
 	sudo -n printf "" > /dev/null 2>&1
@@ -27,7 +27,8 @@ get_sudo()
 		## validate; update cached credentials, authenticating only if necessary
 		## is always necessary in this if statement
 		echo
-		printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
+		printf "obtaining sudo required privileges,\nplease enter ${YELLOW}"
+		#printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
 
 		sudo -v
 
@@ -51,7 +52,7 @@ get_sudo()
 	fi
 
 	# restore screen content
-	tput rmcup
+	## ##tput rmcup
 	echo
 
 }
