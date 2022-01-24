@@ -27,7 +27,7 @@ get_sudo()
 		## validate; update cached credentials, authenticating only if necessary
 		## is always necessary in this if statement
 		echo
-		printf "obtaining sudo required privileges,\nplease enter ${YELLOW}"
+		printf "${YELLOW}"
 		#printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
 
 		sudo -v
