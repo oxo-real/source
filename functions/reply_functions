@@ -9,21 +9,19 @@
 # reply functions definitions
 
 
-reply_plain() {
-
+reply_plain()
+{
 	# entry is visible
 	# string entry must be confirmed explicitly (by pushing enter)
 	read reply
-
 }
 
 
-reply_plain_hidden() {
-
+reply_plain_hidden()
+{
 	# entry is not visible
 	# string entry must be confirmed explicitly (by pushing enter)
     read -s reply
-
 }
 
 
@@ -70,8 +68,8 @@ reply_single_hidden_timed()
 }
 
 
-reply_single() {
-
+reply_single()
+{
     # first entered character goes directly to $reply
     stty_0=$(stty -g)
 	stty raw #-echo
@@ -79,12 +77,11 @@ reply_single() {
 	# posix compliant version instead of zsh read:
 	reply=$(head -c 1)
     stty $stty_0
-
 }
 
 
-reply_read_single() {
-
+reply_read_single()
+{
     # first entered character goes directly to $reply
     #stty_0=$(stty -g)
 	#stty raw #-echo
@@ -92,16 +89,14 @@ reply_read_single() {
 	# posix compliant version instead of zsh read:
 	#reply=$(head -c 1)
     #stty $stty_0
-
 }
 
 
-reply_single_hidden() {
-
+reply_single_hidden()
+{
     # string entry must be confirmed
 	stty_0=$(stty -g)
 	stty raw -echo
     reply=$(head -c 1)
 	stty $stty_0
-
 }

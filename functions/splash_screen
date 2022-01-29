@@ -6,8 +6,8 @@
 #
 
 
-splash_screen() {
-
+splash_screen()
+{
 	figlet_banner=$(figlet "$script_name" && figlet -f mini "$developer")
 	current_year=$(date "+%Y")
 	clear
@@ -20,5 +20,4 @@ splash_screen() {
 	printf "This software is provided as is without warranty of any kind.\n"
 	printf "Running this software is totally at your own risk.\n"
 	echo
-
 }
