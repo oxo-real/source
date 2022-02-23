@@ -42,11 +42,12 @@ reply_single_hidden_timer()
 		tput rc
 		tput rev	# set mode reverse video
 		printf "$input_time"
-		tput sgr0	# turn off all attribures
+		tput sgr0	# turn off all attributes
 		printf " "
 
-		## use -t flag before -n flag to prevent '-t not an identifer' error
-		read -s -t 1 -n 1 reply
+		t=1
+		reply_single_hidden_timed
+		#read -s -t 1 -n 1 reply
 
 		[[ -n $reply ]] && break
 		tput ed
@@ -62,9 +63,10 @@ reply_single_hidden_timed()
     # first entered character goes directly to $reply
 	# timer not visible
 	# timer exits
+	local t=5
 
-	## -t before -n prevents identifier error
-	read -s -t 5 -n 1 reply
+	## use -t flag before -n flag to prevent '-t not an identifier' error
+	read -s -t $t -n 1 reply
 }
 
 
