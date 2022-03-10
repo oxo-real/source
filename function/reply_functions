@@ -9,96 +9,101 @@
 # reply functions definitions
 
 
-reply_plain()
-{
-	# entry is visible
-	# string entry must be confirmed explicitly (by pushing enter)
-	read reply
-}
-
-
-reply_plain_hidden()
-{
-	# entry is not visible
-	# string entry must be confirmed explicitly (by pushing enter)
-    read -s reply
-}
-
-
-reply_single_hidden_timer()
-{
-	# entry is not visible
-    # first entered character goes directly to $reply
-	# timer visible
-	# timer exits
-
-	# has given errors if host script is not #!/bin/sh
-
-	input_time=5
-	tput sc
-
-	while [ $input_time -gt 0 ]; do
-
-		tput rc
-		tput rev	# set mode reverse video
-		printf "$input_time"
-		tput sgr0	# turn off all attributes
-		printf " "
-
-		t=1
-		reply_single_hidden_timed
-		#read -s -t 1 -n 1 reply
-
-		[[ -n $reply ]] && break
-		tput ed
-		input_time=$(( $input_time - 1 ))
-
-	done
-}
-
-
-reply_single_hidden_timed()
-{
-	# entry is not visible
-    # first entered character goes directly to $reply
-	# timer not visible
-	# timer exits
-	local t=5
-
-	## use -t flag before -n flag to prevent '-t not an identifier' error
-	read -s -t $t -n 1 reply
-}
-
+## posix compliant (w/o read)
 
 reply_single()
 {
     # first entered character goes directly to $reply
     stty_0=$(stty -g)
-	stty raw #-echo
-    #read -r reply
-	# posix compliant version instead of zsh read:
-	reply=$(head -c 1)
+    stty raw echo
+
+    reply=$(head -c 1)
+
     stty $stty_0
-}
-
-
-reply_read_single()
-{
-    # first entered character goes directly to $reply
-    #stty_0=$(stty -g)
-	#stty raw #-echo
-    read -n 1 reply
-	# posix compliant version instead of zsh read:
-	#reply=$(head -c 1)
-    #stty $stty_0
 }
 
 
 reply_single_hidden()
 {
     # string entry must be confirmed
-	stty_0=$(stty -g)
-	stty raw -echo
+    stty_0=$(stty -g)
+    stty raw -echo
+
     reply=$(head -c 1)
-	stty $stty_0
+
+    stty $stty_0
+}
+
+
+## with read function
+
+reply_read_plain()
+{
+    # entry is visible
+    # string entry must be confirmed explicitly (with enter)
+    read reply
+}
+
+
+reply_read_plain_hidden()
+{
+    # entry is not visible
+    # string entry must be confirmed explicitly (with enter)
+    read -s reply
+}
+
+
+reply_read_single()
+{
+    # first entered character goes directly to $reply
+    read -n 1 reply
+}
+
+
+reply_read_single_hidden()
+{
+    # first entered character goes directly to $reply
+    read -s -n 1 reply
+}
+
+
+reply_read_single_hidden_timer()
+{
+	# timer visible
+	# timer exits
+
+	# has given errors if host script is not #!/usr/bin/env sh
+
+	i=5	## while loop will be ran 5 times
+	tput sc
+
+	while [ $i -gt 0 ]; do
+
+		tput rc
+		tput rev	# set mode reverse video
+		printf "$i"
+		tput sgr0	# turn off all attributes
+		printf " "
+
+		reply_read_single_hidden_timed
+
+		#[[ -n $reply ]] && break
+		[[ -z $reply ]] || break
+		tput ed
+
+		i=$(( $i - 1 ))
+		#i=$((i--))
+
+	done
+}
+
+
+reply_read_single_hidden_timed()
+{
+	# entry is not visible
+	# first entered character goes directly to $reply
+	local t=1
+
+	## use -t flag before -n flag to prevent '-t not an identifier' error
+	read -s -t $t -n 1 reply
 }

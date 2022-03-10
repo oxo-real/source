@@ -8,37 +8,17 @@
 #
 
 
+source_dir="$XDG_DATA_HOME/c/git/code/source/function"
+source "$source_dir/text_appearance"
+
+
 get_sudo()
 {
-		printf "${YELLOW}"
+    printf "${YELLOW}"
 
-		sudo -v
+    sudo -v
 
-		printf "${NOC}"
-
-	## get sudo error status non interactive
-#	sudo -n printf "" > /dev/null 2>&1
-#
-#	if [[ $? -ne 0 ]]; then
-#
-#		set -e
-#
-#		## reset cached credentials timestamp, always (re-)authenticate
-#		#sudo -k
-#
-#		## validate; update cached credentials, authenticating only if necessary
-#		## is always necessary in this if statement
-#		echo
-#		printf "${YELLOW}"
-#		#printf "In order to obtain required privileges,\nplease enter ${YELLOW}"
-#
-#		sudo -v
-#
-#		printf "${NOC}"
-#
-#		set +e
-#
-#	fi
-
-#	echo
+    printf "${NOC}"
 }
+
+get_sudo
