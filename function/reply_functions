@@ -77,11 +77,12 @@ reply_read_single_hidden_timer()
 	i=5	## while loop will be ran 5 times
 	tput sc
 
-	while [ $i -gt 0 ]; do
+	while [ $i -ge 0 ]; do
 
 		tput rc
 		tput rev	# set mode reverse video
-		printf "$i"
+		[ $i -ge 1 ] && printf "$i"
+		#printf "$i"
 		tput sgr0	# turn off all attributes
 		printf " "
 
