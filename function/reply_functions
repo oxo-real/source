@@ -101,6 +101,8 @@ reply_read_single_hidden_timer()
 
 reply_read_single_hidden_timed()
 {
+	# timer not visible
+	# timer exits
 	# entry is not visible
 	# first entered character goes directly to $reply
 	local t=1
