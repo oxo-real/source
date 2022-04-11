@@ -73,6 +73,7 @@ reply_read_single_hidden_timer()
 	# timer exits
 
 	# has given errors if host script is not #!/usr/bin/env sh
+	# gives errors on: set -e
 
 	i=5	## while loop will be ran 5 times
 	tput sc
