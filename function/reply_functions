@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env bash
 #
 ##
 ### source function
@@ -56,6 +56,7 @@ reply_read_plain_hidden()
 reply_read_single()
 {
     # first entered character goes directly to $reply
+    #read -k 1 reply
     read -n 1 reply
 }
 
