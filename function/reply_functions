@@ -6,6 +6,11 @@
 #
 
 
+# CAUTION!
+# bash read -ne zsh read
+# see note on read
+
+
 # reply functions definitions
 
 
@@ -35,7 +40,7 @@ reply_single_hidden()
 }
 
 
-## with read function
+## with bash read function
 
 reply_read_plain()
 {
