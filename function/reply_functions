@@ -45,31 +45,30 @@ reply_single_hidden()
 reply_read_plain()
 {
     # entry is visible
-    # string entry must be confirmed explicitly (with enter)
-    read reply
+    # string entry must be confirmed explicitly (with eof (enter))
+    read -r -e reply
 }
 
 
 reply_read_plain_hidden()
 {
     # entry is not visible
-    # string entry must be confirmed explicitly (with enter)
-    read -s reply
+    # string entry must be confirmed explicitly (with eof (enter))
+    read -er -s reply
 }
 
 
 reply_read_single()
 {
     # first entered character goes directly to $reply
-    #read -k 1 reply
-    read -n 1 reply
+    read -er -N 1 reply
 }
 
 
 reply_read_single_hidden()
 {
     # first entered character goes directly to $reply
-    read -s -n 1 reply
+    read -er -N 1 -s reply
 }
 
 
@@ -115,5 +114,8 @@ reply_read_single_hidden_timed()
 	local t=1
 
 	## use -t flag before -n flag to prevent '-t not an identifier' error
-	read -s -t $t -n 1 reply
+	## (-N takes timer into account, see below)
+	## e flag causing info to disappear if timer bigger then 1
+	## -N returns after nchars, eof, or timer
+	read -r -s -t $t -N 1 reply
 }
