@@ -11,16 +11,26 @@
 
 # text appearance definitions
 
+
+# how to combine foreground an d background easily?
+fixed_string='\033[0'
+TEST_NOC=$fixed_string'm'
+TEST_RED=$fixed_string';31m'
+#TEST_GREY_BG="$fixed_string"';47m'
+TEST_GREY_BG=$'\;47m'
+
+
+
 ## text color
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 MAGENTA='\033[0;35m'
-LBLUE='\033[0;36m'
+CYAN='\033[0;36m'
 GREY='\033[0;37m'
 BROWN='\033[0;38m'
-TEST='\033[3;30m'
+BLACK='\033[0;30m'
 NOC='\033[0m'	    # no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
@@ -31,3 +41,14 @@ NUL=`tput rmul`
 ### bold
 BOLD=`tput bold`
 NORMAL=`tput sgr0`
+
+## background color fg=black
+RED_BG='\033[0;41;30m'
+GREEN_BG='\033[0;42;30m'
+YELLOW_BG='\033[0;43;30m'
+BLUE_BG='\033[0;44;30m'
+MAGENTA_BG='\033[0;45;30m'
+CYAN_BG='\033[0;46;30m'
+GREY_BG='\033[0;47;30m'
+BROWN_BG='\033[0;48;30m'
+BLACK_BG='\033[0;40;30m'
