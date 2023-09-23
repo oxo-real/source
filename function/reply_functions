@@ -1,13 +1,18 @@
-#!/usr/bin/env bash
+#! /usr/bin/env sh
 #
 ##
 ### source function
 ##
 #
 
-# CAUTION!
-# bash read -ne zsh read
+# usage reply_functions $function [$max_time]
+
+
+# NOTICE bash read -ne zsh read
 # see note on read
+
+
+args="$@"
 
 
 # reply functions definitions
@@ -73,48 +78,51 @@ reply_read_single_hidden()
 
 reply_read_single_hidden_timer()
 {
-	# timer visible
-	# timer exits
+    # timer visible
+    # timer exits
 
-	# has given errors if host script is not #!/usr/bin/env sh
-	# gives errors on: set -e
+    # possible error if host script is not #! /usr/bin/env sh
+    # error while: set -e
 
-	i=5	## while loop will be ran 5 times
-	tput sc
+    max_time="$1"
+    [[ -n $max_time ]] && i="$max_time" || i=5
 
-	while [ $i -ge 0 ]; do
+    tput sc
 
-		tput rc
-		tput rev	# set mode reverse video
-		[ $i -ge 1 ] && printf "$i"
-		#printf "$i"
-		tput sgr0	# turn off all attributes
-		printf " "
+    ## while loop will be ran i times
+    while [ $i -ge 0 ]; do
 
-		reply_read_single_hidden_timed
+	tput rc
+	tput rev	# set mode reverse video
+	[ $i -ge 1 ] && printf "$i"
+	#printf "$i"
+	tput sgr0	# turn off all attributes
+	printf " "
 
-		#[[ -n $reply ]] && break
-		[[ -z $reply ]] || break
-		tput ed
+	reply_read_single_hidden_timed
 
-		i=$(( $i - 1 ))
-		#i=$((i--))
+	#[[ -n $reply ]] && break
+	[[ -z $reply ]] || break
+	tput ed
 
-	done
+	i=$(( $i - 1 ))
+	#i=$((i--))
+
+    done
 }
 
 
 reply_read_single_hidden_timed()
 {
-	# timer not visible
-	# timer exits
-	# entry is not visible
-	# first entered character goes directly to $reply
-	local t=1
+    # timer not visible
+    # timer exits
+    # entry is not visible
+    # first entered character goes directly to $reply
+    local t=1
 
-	## use -t flag before -n flag to prevent '-t not an identifier' error
-	## (-N takes timer into account, see below)
-	## e flag causing info to disappear if timer bigger then 1
-	## -N returns after nchars, eof, or timer
-	read -r -s -t $t -N 1 reply
+    ## use -t flag before -n flag to prevent '-t not an identifier' error
+    ## (-N takes timer into account, see below)
+    ## e flag causing info to disappear if timer bigger then 1
+    ## -N returns after nchars, eof, or timer
+    read -r -s -t $t -N 1 reply
 }
