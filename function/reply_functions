@@ -12,9 +12,6 @@
 # see note on read
 
 
-args="$@"
-
-
 # reply functions definitions
 
 
@@ -22,7 +19,7 @@ args="$@"
 
 reply_single()
 {
-    # first entered character goes directly to $reply
+    # first input character goes directly to $reply
     stty_0=$(stty -g)
     stty raw echo icrnl
 
@@ -34,7 +31,7 @@ reply_single()
 
 reply_single_hidden()
 {
-    # string entry must be confirmed
+    # input must be confirmed
     stty_0=$(stty -g)
     stty raw echo icrnl
 
@@ -44,12 +41,12 @@ reply_single_hidden()
 }
 
 
-## with bash read function
+## with read function
 
 reply_read_plain()
 {
     # entry is visible
-    # string entry must be confirmed explicitly (with eof (enter))
+    # input must be confirmed (with eof (enter))
     read -r -e reply
 }
 
@@ -57,21 +54,21 @@ reply_read_plain()
 reply_read_plain_hidden()
 {
     # entry is not visible
-    # string entry must be confirmed explicitly (with eof (enter))
+    # input must be confirmed (with eof (enter))
     read -er -s reply
 }
 
 
 reply_read_single()
 {
-    # first entered character goes directly to $reply
+    # first input character goes directly to $reply
     read -er -N 1 reply
 }
 
 
 reply_read_single_hidden()
 {
-    # first entered character goes directly to $reply
+    # first input character goes directly to $reply
     read -er -N 1 -s reply
 }
 
@@ -116,8 +113,8 @@ reply_read_single_hidden_timed()
 {
     # timer not visible
     # timer exits
-    # entry is not visible
-    # first entered character goes directly to $reply
+    # input is not visible
+    # first input character goes directly to $reply
     local t=1
 
     ## use -t flag before -n flag to prevent '-t not an identifier' error
