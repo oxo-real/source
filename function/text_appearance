@@ -5,20 +5,29 @@
 ##
 #
 
+
+# usage:
+## NOTICE in fg/bg combinations; use fg first
+## example:
+## printf "${BLACK}${AMBER_BG}%s${NOC}\n" "$text"
+
+
 # https://www.colorhexa.com/
 # color testing
 # for i in {0..7}; do; printf "\033[0;3${i}mcolor\n"; done
 
 # text appearance definitions
 
+## text style
+### underline
+UL=`tput smul`
+NUL=`tput rmul`
+### bold
+BOLD=`tput bold`
+NORMAL=`tput sgr0`
 
-# how to combine foreground an d background easily?
-fixed_string='\033[0'
-TEST_NOC=$fixed_string'm'
-TEST_RED=$fixed_string';31m'
-#TEST_GREY_BG="$fixed_string"';47m'
-TEST_GREY_BG=$'\;47m'
 
+# 3bit and 4 bit color
 
 
 ## text color
@@ -34,13 +43,6 @@ BLACK='\033[0;30m'
 NOC='\033[0m'	    # no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
-## text style
-### underline
-UL=`tput smul`
-NUL=`tput rmul`
-### bold
-BOLD=`tput bold`
-NORMAL=`tput sgr0`
 
 ## background color fg=black
 RED_BG='\033[0;41;30m'
@@ -52,3 +54,51 @@ CYAN_BG='\033[0;46;30m'
 GREY_BG='\033[0;47;30m'
 BROWN_BG='\033[0;48;30m'
 BLACK_BG='\033[0;40;30m'
+
+
+# 24 bit colors
+
+
+rgb_hex_2_dec()
+{
+    # convert hex color code #ff00ff to dec value 255;0;255
+    rgb_hex=$1
+    for i in 0 2 4; do
+
+	left_byte=$(( i+1 ))
+        right_byte=$(( left_byte+1 ))
+
+	dec_part=$(echo "obase=10; ibase=16; $(printf '%s' "$rgb_hex" | cut -c $left_byte,$right_byte | tr a-z A-Z)" | bc)
+
+	[[ $i -eq 0 ]] && r_dec=$dec_part
+	[[ $i -eq 2 ]] && g_dec=$dec_part
+	[[ $i -eq 4 ]] && b_dec=$dec_part
+
+	#rgb_dec="$rgb_dec$dec_part;"
+
+    done
+}
+
+
+FHX()
+{
+    rgb_hex=$1
+    rgb_hex_2_dec $rgb_hex
+
+    # 24bit rgb foreground color
+    printf "\033[38;2;${r_dec};${g_dec};${b_dec}m"
+}
+
+
+BHX()
+{
+    rgb_hex=$1
+    rgb_hex_2_dec $rgb_hex
+
+    # 24bit rgb background color
+    printf "\033[48;2;${r_dec};${g_dec};${b_dec}m"
+}
+
+## 24 bit color definitions
+AMBER="$(FHX ffbf00)"
+AMBER_BG="$(BHX ffbf00)"
