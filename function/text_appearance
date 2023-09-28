@@ -7,7 +7,7 @@
 
 
 # usage:
-## NOTICE in fg/bg combinations; use fg first
+## NOTICE in 24 bit fg/bg combinations; use fg first
 ## example:
 ## printf "${BLACK}${AMBER_BG}%s${NOC}\n" "$text"
 
@@ -27,10 +27,10 @@ BOLD=`tput bold`
 NORMAL=`tput sgr0`
 
 
-# 3bit and 4 bit color
+# 3 bit and 4 bit color
 
 
-## text color
+## foreground (text) color
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
