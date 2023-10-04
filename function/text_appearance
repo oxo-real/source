@@ -18,7 +18,9 @@
 
 # text appearance definitions
 
-## text style
+
+# text style
+
 ### underline
 UL=`tput smul`
 NUL=`tput rmul`
@@ -28,7 +30,6 @@ NORMAL=`tput sgr0`
 
 
 # 3 bit and 4 bit color
-
 
 ## foreground (text) color
 RED='\033[0;31m'
@@ -43,7 +44,6 @@ BLACK='\033[0;30m'
 NOC='\033[0m'	    # no color, default
 INV='\033[0;30;47m' # fg black bg grey
 
-
 ## background color fg=black
 RED_BG='\033[0;41;30m'
 GREEN_BG='\033[0;42;30m'
@@ -55,6 +55,8 @@ GREY_BG='\033[0;47;30m'
 BROWN_BG='\033[0;48;30m'
 BLACK_BG='\033[0;40;30m'
 
+
+# 24 bit color
 
 rgb_hex_2_dec()
 {
@@ -96,8 +98,16 @@ BHX()
     printf "\033[48;2;${r_dec};${g_dec};${b_dec}m"
 }
 
-## 24 bit color definitions
+## 24 bit color specific definitions
+## NOTICE when this file is sourced
+##        this is getting expanded:
+##        therefore reset in last line
 AMBER="$(FHX ffbf00)"
 AMBER_BG="$(BHX ffbf00)"
-## reset colors for terminal
+
+
+# reset colors (for when sourced in terminal)
+
+## NOTICE always keep this last line
+##        see notice above
 printf "${NOC}%s" ""
