@@ -56,9 +56,6 @@ BROWN_BG='\033[0;48;30m'
 BLACK_BG='\033[0;40;30m'
 
 
-# 24 bit colors
-
-
 rgb_hex_2_dec()
 {
     # convert hex color code #ff00ff to dec value 255;0;255
@@ -102,3 +99,5 @@ BHX()
 ## 24 bit color definitions
 AMBER="$(FHX ffbf00)"
 AMBER_BG="$(BHX ffbf00)"
+## reset colors for terminal
+printf "${NOC}%s" ""
