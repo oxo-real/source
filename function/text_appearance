@@ -100,8 +100,10 @@ BHX()
 
 ## 24 bit color specific definitions
 ## NOTICE when this file is sourced
-##        this is getting expanded:
-##        therefore reset in last line
+##        the color definitions below
+##        will be getting expanded.
+##        therefore a reset of colors
+##        will be done in last line
 AMBER="$(FHX ffbf00)"
 AMBER_BG="$(BHX ffbf00)"
 
@@ -110,4 +112,4 @@ AMBER_BG="$(BHX ffbf00)"
 
 ## NOTICE always keep this last line
 ##        see notice above
-printf "${NOC}%s" ""
+printf "${NOC}%s" "" &> /dev/null
