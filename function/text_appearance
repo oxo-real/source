@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#! /usr/bin/env sh
 #
 ##
 ### source function
@@ -106,6 +106,7 @@ BHX()
 ##        will be done in last line
 AMBER="$(FHX ffbf00)"
 AMBER_BG="$(BHX ffbf00)"
+BLACK_ON_WHITE="$(FHX 000000)$(BHX ffffff)"
 
 
 # reset colors (for when sourced in terminal)
