@@ -5,114 +5,114 @@
 ##
 #
 
+## usage example
+#printf "${fg_red}${bg_grey}${st_ul}${sc_yellow}%s\n" 'text'
 
-# usage:
-## NOTICE in 24 bit fg/bg combinations; use fg first
-## example:
-## printf "${BLACK}${AMBER_BG}%s${NOC}\n" "$text"
-
-
-# https://www.colorhexa.com/
-# color testing
-# for i in {0..7}; do; printf "\e[0;3${i}mcolor\n"; done
-
-# \e = \033
+## NOTICE ansi escape sequence '\e' = '\033'
 
 # text appearance definitions
 
+## fg foreground
+## bg background
+## st style
+## sc style color
+
+
 # text style
 
-NOC="$ST_0"   ## prevent existing code from breaking; change them!
-ST_0='\e[0m'
-ST_BOLD='\e[1m'
-BOLD='\e[1m'  ## prevent existing code from breaking; change them!
-ST_DIM='\e[2m'
-ST_ITAL='\e[3m'
-ST_UL='\e[4:1m'
-ST_DBL_UL='\e[4:2m'
-ST_WAVE_UL='\e[4:3m'
-ST_THIN_UL='\e[4:4m'
-ST_DASH_UL='\e[4:5m'
-ST_BLINK='\e[0;5m'  ## not supported in alacritty
-ST_REV='\e[7m'
-ST_INV='\e[8m'
-ST_STRTH='\e[9m'
+st_def='\e[0m'
+st_bold='\e[1m'
+st_dim='\e[2m'
+st_ital='\e[3m'
+st_ul='\e[4:1m'
+st_dbl_ul='\e[4:2m'
+st_wave_ul='\e[4:3m'
+st_thin_ul='\e[4:4m'
+st_dash_ul='\e[4:5m'
+st_blink='\e[0;5m'  ## not supported in alacritty, does work in foot
+st_rev='\e[7m'  ## NOTICE FG becomes BG and v.v.
+
+## styles that seems to accept no (SC) color
+st_inv='\e[8m'
+st_strth='\e[9m'
 
 
-# 3 bit and 4 bit color
+# text color
 
-## foreground (text) color
-FG_BLACK='\e[30m'
-FG_RED='\e[31m'
-RED='\e[31m'  ## prevent existing code from breaking; change them!
-FG_GREEN='\e[32m'
-FG_YELLOW='\e[33m'
-YELLOW='\e[33m'  ## prevent existing code from breaking; change them!
-FG_BLUE='\e[34m'
-BLUE='\e[34m'  ## prevent existing code from breaking; change them!
-FG_MAGENTA='\e[35m'
-MAGENTA='\e[35m'  ## prevent existing code from breaking; change them!
-FG_CYAN='\e[36m'
-FG_GREY='\e[37m'
-
-FG_D_GREY='\e[90m'
-#FG_L_RED='\e[91m'  ## FGx defined
-#FG_L_GREEN='\e[92m'  ## FGx defined
-#FG_L_YELLOW='\e[93m'  ## FGx defined
-#FG_L_BLUE='\e[94m'  ## FGx defined
-#FG_L_MAGENTA='\e[95m'  ## FGx defined
-#FG_L_CYAN='\e[96m'  ## FGx defined
-FG_WHITE='\e[97m'
+## foreground color
+### standard (high intensity)
+fg_black='\e[38;5;0m'
+fg_red='\e[38;5;9m'
+fg_green='\e[38;5;10m'
+fg_yellow='\e[38;5;11m'
+fg_blue='\e[38;5;12m'
+fg_magentA='\e[38;5;13m'
+fg_cyan='\e[38;5;14m'
+fg_grey='\e[38;5;7m'
+fg_white='\e[38;5;15m'
+### dark
+fg_d_grey='\e[38;5;8m'
+fg_d_red='\e[38;5;1m'
+fg_d_green='\e[38;5;2m'
+fg_d_yellow='\e[38;5;3m'
+fg_d_blue='\e[38;5;4m'
+fg_d_magenta='\e[38;5;5m'
+fg_d_cyan='\e[38;5;6m'
 
 ## background color
-BG_BLACK='\e[40m'
-BG_RED='\e[41m'
-BG_GREEN='\e[42m'
-BG_YELLOW='\e[43m'
-BG_BLUE='\e[44m'
-BG_MAGENTA='\e[45m'
-BG_CYAN='\e[46m'
-BG_GREY='\e[47m'
-
-BG_D_GREY='\e[100m'
-#BG_L_RED='\e[101m'  ## FGx defined
-#BG_L_GREEN='\e[102m'  ## FGx defined
-#BG_L_YELLOW='\e[103m'  ## FGx defined
-#BG_L_BLUE='\e[104m'  ## FGx defined
-#BG_L_MAGENTA='\e[105m'  ## FGx defined
-#BG_L_CYAN='\e[106m'  ## FGx defined
-BG_WHITE='\e[107m'
-
-
-# 8 bit color
-## style color
-
-# [terminal - List of ANSI color escape sequences - Stack Overflow](https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences)
-# [ANSI escape code - Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code)
-# [xterm - Wikipedia](https://en.wikipedia.org/wiki/Xterm#Protocols)
-
-SC_BLACK='\e[58;5;0m'
-SC_RED='\e[58;5;196m'
-SC_GREEN='\e[58;5;46m'
-SC_YELLOW='\e[58;5;226m'
-SC_BLUE='\e[58;5;12m'
-SC_MAGENTA='\e[58;5;201m'
-SC_CYAN='\e[58;5;51m'
-SC_GREY='\e[58;5;7m'
-
-# TODO set right 8bit codes
-SC_0='\e[59m'  ## probably
-SC_L_BLACK='\e[58;5;0m'
-SC_L_RED='\e[58;5;196m'
-SC_L_GREEN='\e[58;5;46m'
-SC_L_YELLOW='\e[58;5;226m'
-SC_L_BLUE='\e[58;5;12m'
-SC_L_MAGENTA='\e[58;5;201m'
-SC_L_CYAN='\e[58;5;51m'
-SC_L_GREY='\e[58;5;7m'
+### standard (high intensity)
+bg_black='\e[48;5;0m'
+bg_red='\e[48;5;9m'
+bg_green='\e[48;5;10m'
+bg_yellow='\e[48;5;11m'
+bg_blue='\e[48;5;12m'
+bg_magenta='\e[48;5;13m'
+bg_cyan='\e[48;5;14m'
+bg_grey='\e[48;5;7m'
+bg_white='\e[48;5;15m'
+### dark
+bg_d_grey='\e[48;5;8m'
+bg_d_red='\e[48;5;1m'
+bg_d_green='\e[48;5;2m'
+bg_d_yellow='\e[48;5;3m'
+bg_d_blue='\e[48;5;4m'
+bg_d_magenta='\e[48;5;5m'
+bg_d_cyan='\e[48;5;6m'
 
 
-# 24 bit color
+# style color
+
+### standard (high intensity)
+sc_black='\e[58;5;0m'
+sc_red='\e[58;5;9m'
+sc_green='\e[58;5;10m'
+sc_yellow='\e[58;5;11m'
+sc_blue='\e[58;5;12m'
+sc_magenta='\e[58;5;13m'
+sc_cyan='\e[58;5;14m'
+sc_grey='\e[58;5;7m'
+sc_white='\e[58;5;15m'
+### dark
+sc_d_grey='\e[58;5;8m'
+sc_d_red='\e[58;5;1m'
+sc_d_green='\e[58;5;2m'
+sc_d_yellow='\e[58;5;3m'
+sc_d_blue='\e[58;5;4m'
+sc_d_magenta='\e[58;5;5m'
+sc_d_cyan='\e[58;5;6m'
+
+
+# prevent existing code from breaking
+## #TODO old pointers! change them!
+NOC="$st_def"
+BOLD="$st_bold"
+RED="$fg_red"
+YELLOW="$fg_yellow"
+BLUE="$fg_blue"
+MAGENTA="$fg_magenta"
+AMBER="$cc_fg_amber"
+
+# 24 bit custom color engine
 
 ## convert hex color code ff00ff to dec value 255;0;255
 rgb_hex_2_dec()
@@ -168,50 +168,41 @@ BGx()
 
 
 ## style color hex
-
-### WARNING prepend with valid style
-### example:
-### printf "${BLACK}${BG_AMBER}${CYUL}$(SCx ffffb6)%s\n" 'hello'
-### foreground, background, style, stylecolor
-
 SCx()
 {
     rgb_hex=$1
     rgb_hex_2_dec $rgb_hex
 
     # 24bit rgb style color
+    #printf "\e[58;5;${r_dec};${g_dec};${b_dec}m"
     printf "\e[58;2;${r_dec};${g_dec};${b_dec}m"
 }
 
 
-## 24 bit color hex specific definitions
+## custom color definitions
 
 ## NOTICE when this file is sourced
 ##        the color definitions below
 ##        will be getting expanded.
 ##        therefore a reset of colors
 ##        will be done in last line
-AMBER="$(FGx ffbf00)"
-BG_AMBER="$(BGx ffbf00)"
-BLACK_ON_WHITE="$(FGx 000000)$(BGx ffffff)"
-TERM_DEF="$(FGx aaaaaa)"  ## ${NOC} color code
+cc_fg_amber="$(FGx ffbf00)"
+cc_bg_amber="$(BGx ffbf00)"
+cc_black_on_white="$(FGx 000000)$(BGx ffffff)"
+cc_term_default="$(FGx aaaaaa)"  ## placeholder ${NOC} foreground color code
 
-FG_L_RED="$(FGx ff5555)"
-FG_L_GREEN="$(FGx 55ff55)"
-FG_L_YELLOW="$(FGx ffff55)"
-FG_L_BLUE="$(FGx 5555ff)"
-FG_L_MAGENTA="$(FGx ff55ff)"
-FG_L_CYAN="$(FGx 55ffff)"
 
-BG_L_RED="$(BGx ff5555)"
-BG_L_GREEN="$(BGx 55ff55)"
-BG_L_YELLOW="$(BGx ffff55)"
-BG_L_BLUE="$(BGx 5555ff)"
-BG_L_MAGENTA="$(BGx ff55ff)"
-BG_L_CYAN="$(BGx 55ffff)"
+# sources
+
+# [terminal - List of ANSI color escape sequences - Stack Overflow](https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences)
+# [ANSI escape code - Wikipedia](https://en.wikipedia.org/wiki/ANSI_escape_code)
+# [xterm - Wikipedia](https://en.wikipedia.org/wiki/Xterm#Protocols)
+# [List of 8-bit computer hardware graphics - Wikipedia](https://en.wikipedia.org/wiki/List_of_8-bit_computer_hardware_graphics#CGA)
+# [HTML Color Codes Chart 🎨](https://www.rapidtables.com/web/color/html-color-codes.html)
+
 
 # reset colors (for when sourced in terminal)
 
-## NOTICE always keep this last line
+## NOTICE always keep this last executable line
 ##        see notice above
-printf "${NOC}%s" "" &> /dev/null
+#printf "${NOC}%s" "" &> /dev/null
