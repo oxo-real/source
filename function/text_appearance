@@ -67,6 +67,10 @@ bg_green='\e[48;5;10m'
 bg_yellow='\e[48;5;11m'
 bg_blue='\e[48;5;12m'
 bg_magenta='\e[48;5;13m'
+#for color in "${(k)cs_irblack}"; do
+#for color in "${(k)cs_irblack}"; do
+#for color hex_value in "${(kv)$active_color_scheme}"; do
+#for color hex_value in "${(kv)$active_color_scheme}"; do
 bg_cyan='\e[48;5;14m'
 bg_grey='\e[48;5;7m'
 bg_white='\e[48;5;15m'
@@ -142,6 +146,7 @@ rgb_hex_2_dec()
 	#rgb_dec="$rgb_dec$dec_part;"
 
     done
+
 }
 
 
@@ -190,6 +195,38 @@ cc_fg_amber="$(FGx ffbf00)"
 cc_bg_amber="$(BGx ffbf00)"
 cc_black_on_white="$(FGx 000000)$(BGx ffffff)"
 cc_term_default="$(FGx aaaaaa)"  ## placeholder ${NOC} foreground color code
+
+## color scheme base_16_irblack
+: '
+declare -A cs_irblack
+#typeset -A cs_irblack
+
+cs_irblack[red]=ff6c60
+cs_irblack[green]=a8ff60
+cs_irblack[yellow]=ffffb6
+cs_irblack[blue]=96cbfe
+cs_irblack[magenta]=ff73fd
+cs_irblack[cyan]=c6c5fe
+cs_irblack[white]=b5b3aa
+cs_irblack[grey]=6c6c66
+cs_irblack[red2]=ff0000
+
+active_color_scheme='cs_irblack'
+
+#TODO make this work!
+#for color hex_value in "${(@kv)cs_irblack}"; do
+#for color hex_value in "${(kv)cs_irblack}"; do
+#for color in "${(k)cs_irblack}"; do
+#for color hex_value in "${(kv)$active_color_scheme}"; do
+for color in "${!cs_irblack[@]}"; do
+
+    hex_value="${cs_irblack[$color]}"
+    declare fg_"${color}"="$(FGx ${hex_value})"
+    declare bg_"${color}"="$(BGx ${hex_value})"
+    declare sc_"${color}"="$(SCx ${hex_value})"
+
+done
+# '
 
 
 # sources
