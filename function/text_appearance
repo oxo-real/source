@@ -2,13 +2,21 @@
 #
 ##
 ### source function
+###
+### color- and stylize terminal text
 ##
 #
 
-## usage example
-#printf "${fg_red}${bg_grey}${st_ul}${sc_yellow}%s\n" 'text'
+## usage
+# printf "${fg}${bg}${st}${sc}%s" 'text'
 
-## NOTICE ansi escape sequence '\e' = '\033'
+## NOTICE double quotes around appearances
+
+## example
+#printf "${fg_black}${bg_amber}${st_ul}${sc_black}%s${st_def}%s\n" 'text1' 'text2'
+
+## NOTICE ansi escape sequence '\e' = '\033' = '\x1b'
+
 
 # text appearance definitions
 
@@ -16,6 +24,9 @@
 ## bg background
 ## st style
 ## sc style color
+
+## appearances are independently applicable
+## style defaults to foreground color when style color is omitted
 
 
 # text style
@@ -191,10 +202,9 @@ SCx()
 ##        will be getting expanded.
 ##        therefore a reset of colors
 ##        will be done in last line
-cc_fg_amber="$(FGx ffbf00)"
-cc_bg_amber="$(BGx ffbf00)"
-cc_black_on_white="$(FGx 000000)$(BGx ffffff)"
-cc_term_default="$(FGx aaaaaa)"  ## placeholder ${NOC} foreground color code
+fg_amber="$(FGx ffbf00)"
+bg_amber="$(BGx ffbf00)"
+fg_default="$(FGx aaaaaa)"  ## placeholder terminal default foreground
 
 ## color scheme base_16_irblack
 : '
@@ -242,4 +252,4 @@ done
 
 ## NOTICE always keep this last executable line
 ##        see notice above
-#printf "${NOC}%s" "" &> /dev/null
+printf "${NOC}%s" "" &> /dev/null
