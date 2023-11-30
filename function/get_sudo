@@ -1,24 +1,50 @@
-#!/bin/bash
+#! /usr/bin/env sh
 #
 ##
+### # # # # # #
+###      #
+### # # # # # #
+###
 ### source function
 ###
-### 2019 - 2022  |  cytopyge
+### (c) 2019 - 2023  |  oxo
 ##
 #
 
 
-source_dir="$XDG_DATA_HOME/c/git/code/source/function"
-source "$source_dir/text_appearance"
+sourching()
+{
+    source_dir="$XDG_DATA_HOME/c/git/code/source/function"
+
+    ## when $source_dir does not exist
+    if [ ! -d $source_dir ]; then
+
+	user_name=$(logname)
+	xdg_h="/home/$user_name"
+	xdg_d_h="$xdg_h/.local/share"
+	xdg_c_h="$xdg_h/.local/cache"
+
+	source_dir="$xdg_d_h/c/git/code/source/function"
+    fi
+
+    source "$source_dir/text_appearance"
+}
 
 
 get_sudo()
 {
-    printf "${YELLOW}"
+    printf "${fg_yellow}"
 
     sudo -v
 
-    printf "${NOC}"
+    printf "${st_def}"
 }
 
-#get_sudo
+
+main()
+{
+    sourching
+    get_sudo
+}
+
+main
