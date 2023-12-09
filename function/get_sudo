@@ -22,7 +22,6 @@ sourching()
 	user_name=$(logname)
 	xdg_h="/home/$user_name"
 	xdg_d_h="$xdg_h/.local/share"
-	xdg_c_h="$xdg_h/.local/cache"
 
 	source_dir="$xdg_d_h/c/git/code/source/function"
     fi
