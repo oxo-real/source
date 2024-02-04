@@ -61,8 +61,21 @@ bar() {
     printf '%4s%s\r' "[${prog// /#}${total}]   " "$prog_perc%"
 }
 
-# bar_cols='20'
-# bar_border_left='['
-# bar_prog_char='#'
-# bar_info_text='abc'
-# bar_border_right=']'
+#--------------------------------------------------------------------
+
+bar_new()
+{
+    # usage: prog_bar 2 6 20 [0]
+    step_curr="$1"
+    step_total="$2"
+    bar_cols="$3"
+    no_info="$4"
+
+    bar_border_left='['
+    bar_prog_char='#'
+    bar_info_text='abc'
+    bar_border_right=']'
+
+    ## maths
+    step_rel=$((echo $1/$2*100) | bc -l)
+}
