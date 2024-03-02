@@ -12,10 +12,14 @@
 
 ## NOTICE double quotes around appearances
 
-## example
+## examples
 #printf "${fg_black}${bg_amber}${st_ul}${sc_black}%s${st_def}%s\n" 'text1' 'text2'
 
-## NOTICE ansi escape sequence '\e' = '\033' = '\x1b'
+#printf "${fg_black}$(BGx aaaaaa)%s${st_def}\n" 'text_appearance'
+## NOTICE1 ${fg_black}   is a variable call (with curly braces)
+## NOTICE2 $(BGX aaaaaa) is a function call (with round braces)
+
+## NOTICE3 ansi escape sequence '\e' = '\033' = '\x1b'
 
 
 # text appearance definitions
@@ -43,7 +47,7 @@ st_dash_ul='\e[4:5m'
 st_blink='\e[0;5m'  ## not supported in alacritty, does work in foot
 st_rev='\e[7m'  ## NOTICE FG becomes BG and v.v.
 
-## styles that seems to accept no (SC) color
+## styles that seem to accept no (SC) color
 st_inv='\e[8m'
 st_strth='\e[9m'
 

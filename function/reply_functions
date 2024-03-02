@@ -90,16 +90,25 @@ reply_read_single_hidden_timer()
     while [ $i -ge 0 ]; do
 
 	tput rc
+
+	## reverse video timer with tput
+	: '
 	tput rev	# set mode reverse video
 	[ $i -ge 1 ] && printf "$i"
-	#printf "$i"
-	tput sgr0	# turn off all attributes
+	# '
+
+	## reverse video timer with text_appearance
+	#: '
+	[ $i -ge 1 ] && printf "${fg_black}$(BGx aaaaaa)%s${st_def}" "$i"
+	# '
+
 	printf " "
 
 	reply_read_single_hidden_timed
 
-	#[[ -n $reply ]] && break
 	[[ -z $reply ]] || break
+
+	tput sgr0	# turn off all attributes
 	tput ed
 
 	i=$(( $i - 1 ))
