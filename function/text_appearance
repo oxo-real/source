@@ -74,6 +74,7 @@ fg_d_blue='\e[38;5;4m'
 fg_d_magenta='\e[38;5;5m'
 fg_d_cyan='\e[38;5;6m'
 
+
 ## background color
 ### standard (high intensity)
 bg_black='\e[48;5;0m'
@@ -121,8 +122,51 @@ sc_d_magenta='\e[58;5;5m'
 sc_d_cyan='\e[58;5;6m'
 
 
+# custom color definitions
+## see below function definition
+
+
+# color scheme base_16_irblack
+
+: '
+
+declare -A cs_irblack
+#typeset -A cs_irblack
+
+cs_irblack[red]=ff6c60
+cs_irblack[green]=a8ff60
+cs_irblack[yellow]=ffffb6
+cs_irblack[blue]=96cbfe
+cs_irblack[magenta]=ff73fd
+cs_irblack[cyan]=c6c5fe
+cs_irblack[white]=b5b3aa
+cs_irblack[grey]=6c6c66
+cs_irblack[red2]=ff0000
+
+active_color_scheme='cs_irblack'
+
+#TODO make this work!
+#for color hex_value in "${(@kv)cs_irblack}"; do
+#for color hex_value in "${(kv)cs_irblack}"; do
+#for color in "${(k)cs_irblack}"; do
+#for color hex_value in "${(kv)$active_color_scheme}"; do
+for color in "${!cs_irblack[@]}"; do
+
+    hex_value="${cs_irblack[$color]}"
+    declare fg_"${color}"="$(FGx ${hex_value})"
+    declare bg_"${color}"="$(BGx ${hex_value})"
+    declare sc_"${color}"="$(SCx ${hex_value})"
+
+done
+
+# '
+
+
 # prevent existing code from breaking
 ## #TODO old pointers! change them!
+
+: '
+
 NOC="$st_def"
 BOLD="$st_bold"
 RED="$fg_red"
@@ -130,6 +174,9 @@ YELLOW="$fg_yellow"
 BLUE="$fg_blue"
 MAGENTA="$fg_magenta"
 AMBER="$cc_fg_amber"
+
+# '
+
 
 # 24 bit custom color engine
 
@@ -199,7 +246,7 @@ SCx()
 }
 
 
-## custom color definitions
+# custom color definitions
 
 ## NOTICE when this file is sourced
 ##        the color definitions below
@@ -209,38 +256,6 @@ SCx()
 fg_amber="$(FGx ffbf00)"
 bg_amber="$(BGx ffbf00)"
 fg_default="$(FGx aaaaaa)"  ## placeholder terminal default foreground
-
-## color scheme base_16_irblack
-: '
-declare -A cs_irblack
-#typeset -A cs_irblack
-
-cs_irblack[red]=ff6c60
-cs_irblack[green]=a8ff60
-cs_irblack[yellow]=ffffb6
-cs_irblack[blue]=96cbfe
-cs_irblack[magenta]=ff73fd
-cs_irblack[cyan]=c6c5fe
-cs_irblack[white]=b5b3aa
-cs_irblack[grey]=6c6c66
-cs_irblack[red2]=ff0000
-
-active_color_scheme='cs_irblack'
-
-#TODO make this work!
-#for color hex_value in "${(@kv)cs_irblack}"; do
-#for color hex_value in "${(kv)cs_irblack}"; do
-#for color in "${(k)cs_irblack}"; do
-#for color hex_value in "${(kv)$active_color_scheme}"; do
-for color in "${!cs_irblack[@]}"; do
-
-    hex_value="${cs_irblack[$color]}"
-    declare fg_"${color}"="$(FGx ${hex_value})"
-    declare bg_"${color}"="$(BGx ${hex_value})"
-    declare sc_"${color}"="$(SCx ${hex_value})"
-
-done
-# '
 
 
 # sources
@@ -256,4 +271,5 @@ done
 
 ## NOTICE always keep this last executable line
 ##        see notice above
-printf "${NOC}%s" "" &> /dev/null
+printf "${st_def}"
+#printf "${st_def}" '' &> /dev/null
