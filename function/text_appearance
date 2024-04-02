@@ -258,6 +258,23 @@ bg_amber="$(BGx ffbf00)"
 fg_default="$(FGx aaaaaa)"  ## placeholder terminal default foreground
 
 
+## clear current active cursor line
+## arg is number of lines above
+## no arg is only current line
+erase_line()
+{
+    [[ -n "$1" ]] && lines="$1" || lines=0
+
+    for (( i=0; i<=$lines; i++ )); do
+
+	[[ i -gt 0 ]] && tput cuu1
+	printf "\r"
+	tput el
+
+    done
+}
+
+
 # sources
 
 # [terminal - List of ANSI color escape sequences - Stack Overflow](https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences)
