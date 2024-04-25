@@ -46,6 +46,11 @@ see: note on read
 # '
 
 
+#set -o errexit
+#set -o nounset
+set -o pipefail
+
+
 # reply functions definitions
 
 ## posix compliant (w/o read)
