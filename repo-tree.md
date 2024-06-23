@@ -10,7 +10,7 @@
 │   └── zzz_deprecated
 │       ├── bemenu_inject
 │       └── rofi_inject
-├── repo_tree.md
+├── repo-tree.md
 └── snippet
     ├── COPYING
     ├── header
