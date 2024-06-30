@@ -55,7 +55,7 @@ set -o pipefail
 
 ## posix compliant (w/o read)
 
-reply_single()
+reply_single ()
 {
     # first input character goes directly to $reply
     stty_0=$(stty -g)
@@ -67,7 +67,7 @@ reply_single()
 }
 
 
-reply_single_hidden()
+reply_single_hidden ()
 {
     # input must be confirmed
     stty_0=$(stty -g)
@@ -81,7 +81,7 @@ reply_single_hidden()
 
 ## with read function
 
-reply_read_plain()
+reply_read_plain ()
 {
     # entry is visible
     # input must be confirmed (with eof (enter))
@@ -89,7 +89,7 @@ reply_read_plain()
 }
 
 
-reply_read_plain_hidden()
+reply_read_plain_hidden ()
 {
     # entry is not visible
     # input must be confirmed (with eof (enter))
@@ -97,27 +97,28 @@ reply_read_plain_hidden()
 }
 
 
-reply_read_single()
+reply_read_single ()
 {
     # first input character goes directly to $reply
     read -er -N 1 reply
 }
 
 
-reply_read_single_hidden()
+reply_read_single_hidden ()
 {
     # first input character goes directly to $reply
     read -er -N 1 -s reply
 }
 
 
-reply_read_single_hidden_timer()
+reply_read_single_hidden_timer ()
 {
     # timer visible
     # timer exits
 
-    # possible error if host script is not #! /usr/bin/env sh
-    # error while: set -e
+    # NOTICE possible error if host script is not #! /usr/bin/env sh
+    # NOTICE error while hostscript: set -o errexit
+    # NOTICE error while: set -e
 
     max_time="$1"
     [[ -n $max_time ]] && i="$max_time" || i=5
@@ -156,7 +157,7 @@ reply_read_single_hidden_timer()
 }
 
 
-reply_read_single_hidden_timed()
+reply_read_single_hidden_timed ()
 {
     # timer not visible
     # timer exits
