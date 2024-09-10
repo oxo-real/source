@@ -7,9 +7,9 @@
 ### |_|  \___| .__/|_|\__, |___|_|  \__,_|_| |_|\___|\__|___/
 ###          |_|      |___/_____|
 ###
-### # # # # # #
-###      #
-### # # # # # #
+###  # # # # # #
+###       #
+###  # # # # # #
 ###
 
 : '
@@ -41,7 +41,7 @@ https://www.gnu.org/licenses/gpl-3.0.txt
 reply_functions $function [$max_time]
 
 NOTICE bash read -ne zsh read
-see: note on read
+see: oxo note on read
 
 # '
 
@@ -57,10 +57,14 @@ set -o pipefail
 
 reply_single ()
 {
+    #TODO DEV
+    # input must be confirmed
     # first input character goes directly to $reply
     stty_0=$(stty -g)
-    stty raw echo icrnl
 
+    [[ -o interactive ]] && stty raw echo icrnl
+    #[[ $- == *i* ]] && stty raw echo icrnl
+    #stty raw echo icrnl
     reply=$(head -c 1)
 
     stty $stty_0
@@ -69,10 +73,14 @@ reply_single ()
 
 reply_single_hidden ()
 {
+    #TODO DEV
     # input must be confirmed
+    # first input character goes directly to $reply
     stty_0=$(stty -g)
-    stty raw echo icrnl
 
+    [[ -o interactive ]] && stty raw -echo icrnl
+    #[[ $- == *i* ]] && stty raw -echo icrnl
+    #stty raw -echo icrnl
     reply=$(head -c 1)
 
     stty $stty_0
