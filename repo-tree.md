@@ -2,7 +2,7 @@
 /home/oxo/.local/share/c/git/code/source
 ├── function
 │   ├── get_sudo
-│   ├── progress_bar
+│   ├── progress-bar
 │   ├── reply_functions
 │   ├── reply_functions_test
 │   ├── splash_screen

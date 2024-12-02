@@ -1,20 +1,23 @@
 #! /usr/bin/env sh
 
-#set -o errexit
-#set -o nounset
-#set -o pipefail
+###                              _
+###  _ __  _ __ ___   __ _      | |__   __ _ _ __
+### | '_ \| '__/ _ \ / _` |_____| '_ \ / _` | '__|
+### | |_) | | | (_) | (_| |_____| |_) | (_| | |
+### | .__/|_|  \___/ \__, |     |_.__/ \__,_|_|
+### |_|              |___/
+###
+###  # # # # # #
+###       #
+###  # # # # # #
+###
 
 : '
-----------------------------------------------------------------------
 progress_bar
 define a progress bar
-
 copyright (c) 2021 - 2024  |  oxo
 
-# # # # # #
-     #
-# # # # # #
-
+----------------------------------------------------------------------
 GNU GPLv3 GENERAL PUBLIC LICENSE
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -31,6 +34,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 https://www.gnu.org/licenses/gpl-3.0.txt
 
 @oxo@qoto.org
+======================================================================
 
 dependencies:
 none
@@ -39,16 +43,21 @@ usage:
 bar $prog_perc $bar_width
 
 with:
-bar_width	(characters)
-prog_perc (whole percentage)
+bar_width	(integer)
+prog_perc 	(integer)
 
 todo:
 print data inside bar
-======================================================================
+
 # '
 
 
-bar() {
+#set -o errexit
+#set -o nounset
+#set -o pipefail
+
+bar ()
+{
     elapsed=$(( $1*$2/100 ))
 
     # bar definition with spaces
@@ -58,24 +67,24 @@ bar() {
 
     # %4s	reserves 4 chars for percentage
     # %s\r	print bar and carriage return
-    printf '%4s%s\r' "[${prog// /#}${total}]   " "$prog_perc%"
+    printf '%4s%s\r' "[${prog// /#}${total}]  " "$prog_perc%"
 }
 
 #--------------------------------------------------------------------
 
-bar_new()
-{
-    # usage: prog_bar 2 6 20 [0]
-    step_curr="$1"
-    step_total="$2"
-    bar_cols="$3"
-    no_info="$4"
-
-    bar_border_left='['
-    bar_prog_char='#'
-    bar_info_text='abc'
-    bar_border_right=']'
-
-    ## maths
-    step_rel=$((echo $1/$2*100) | bc -l)
-}
+#bar_new ()
+#{
+#    # usage: prog_bar 2 6 20 [0]
+#    step_curr="$1"
+#    step_total="$2"
+#    bar_cols="$3"
+#    no_info="$4"
+#
+#    bar_border_left='['
+#    bar_prog_char='#'
+#    bar_info_text='abc'
+#    bar_border_right=']'
+#
+#    ## maths
+#    step_rel=$((echo $1/$2*100) | bc -l)
+#}
