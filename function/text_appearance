@@ -255,6 +255,8 @@ SCx()
 ##        will be done in last line
 fg_amber="$(FGx ffbf00)"
 bg_amber="$(BGx ffbf00)"
+fg_teal="$(FGx 008080)"
+bg_teal="$(BGx 008080)"
 fg_default="$(FGx aaaaaa)"  ## placeholder terminal default foreground
 
 
