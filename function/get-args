@@ -1,0 +1,21 @@
+#! /usr/bin/env sh
+
+args="$@"
+getargs ()
+{
+    while :; do
+
+	case "$1" in
+
+	    a ) a=1
+		shift
+		;;
+
+	    * ) return
+		;;
+
+	esac
+
+    done
+}
+getargs $args

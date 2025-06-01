@@ -1,6 +1,7 @@
 ```
 /home/oxo/.local/share/c/git/code/source
 ├── function
+│   ├── get-args
 │   ├── get_sudo
 │   ├── progress-bar
 │   ├── reply_functions
@@ -17,5 +18,5 @@
     ├── read_flags
     └── yn_sure_dialogue
 
-4 directories, 13 files
+4 directories, 14 files
 ```
