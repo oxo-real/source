@@ -3,12 +3,18 @@
 args="$@"
 getargs ()
 {
-    while :; do
+    while [ "$#" -gt 0 ]; do
+    # while :; do
 
 	case "$1" in
 
-	    a ) a=1
+	    a )
+		a=1
 		shift
+		;;
+
+	    '' )
+		echo no_args
 		;;
 
 	    * ) return

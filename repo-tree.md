@@ -1,7 +1,6 @@
 ```
 /home/oxo/.local/share/c/git/code/source
 ├── function
-│   ├── get-args
 │   ├── get_sudo
 │   ├── progress-bar
 │   ├── reply_functions
@@ -14,6 +13,7 @@
 ├── repo-tree.md
 └── snippet
     ├── COPYING
+    ├── get-args
     ├── header
     ├── read_flags
     └── yn_sure_dialogue
